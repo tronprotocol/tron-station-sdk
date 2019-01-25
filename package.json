@@ -1,12 +1,19 @@
 {
-  "name": "tronstation",
+  "name": "tron-station",
   "version": "0.1.0",
   "description": "Tron Station API is an SDK for estimating Tron energy and bandwidth consumption based on Tron network. Developers can quickly review energy and bandwidth points information before deploying/triggerring a smart contract or make a trasaction.",
-  "main": "dist/main.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production"
   },
+  "engines": {
+    "node": ">=7.8.0"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
   "dependencies": {
     "lodash": "^4.17.11",
     "tronweb": "^2.1.29"
