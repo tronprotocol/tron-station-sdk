@@ -260,3 +260,5 @@ class TronStation {
         return sr;
     }
 }
+
+module.exports = TronStation;
