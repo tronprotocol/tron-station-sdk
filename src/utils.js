@@ -12,26 +12,36 @@ function configureNet(net) {
     let defaultAddress;
     let isMain = false;
 
-    switch (net) {
-        case NET.MAIN:
-            tronweb = new TronWeb(
-                nets.main.fullNode,
-                nets.main.solidityNode,
-                nets.main.eventServer
-            );
-            defaultAddress = nets.main.defaultAddress;
-            isMain = true;
-            break;
-        case NET.TEST:
-            tronweb = new TronWeb(
-                nets.test.fullNode,
-                nets.test.solidityNode,
-                nets.test.eventServer
-            );
-            defaultAddress = nets.test.defaultAddress;
-            break;
-        default:
-            throw new Error("Invalid net");
+    if (typeof net === 'object') {
+        tronweb = new TronWeb(
+            net.fullNode,
+            net.solidityNode,
+            net.eventServer
+        );
+        defaultAddress = net.defaultAddress;
+    }
+    else {
+        switch (net) {
+            case NET.MAIN:
+                tronweb = new TronWeb(
+                    nets.main.fullNode,
+                    nets.main.solidityNode,
+                    nets.main.eventServer
+                );
+                defaultAddress = nets.main.defaultAddress;
+                isMain = true;
+                break;
+            case NET.TEST:
+                tronweb = new TronWeb(
+                    nets.test.fullNode,
+                    nets.test.solidityNode,
+                    nets.test.eventServer
+                );
+                defaultAddress = nets.test.defaultAddress;
+                break;
+            default:
+                throw new Error("Invalid net");
+        }
     }
 
     this.tronweb = tronweb;
