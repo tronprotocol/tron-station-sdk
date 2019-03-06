@@ -1,57 +1,8 @@
-const TronWeb = require("tronweb");
-const nets = require("./nets.js");
 const _ = require("lodash");
 
-const NET = {
-    MAIN: "main",
-    TEST: "test"
-};
-
-function configureNet(net) {
-    let tronweb;
-    let defaultAddress;
-    let isMain = false;
-
-    if (typeof net === 'object') {
-        tronweb = new TronWeb(
-            net.fullNode,
-            net.solidityNode,
-            net.eventServer
-        );
-        defaultAddress = net.defaultAddress;
-    }
-    else {
-        switch (net) {
-            case NET.MAIN:
-                tronweb = new TronWeb(
-                    nets.main.fullNode,
-                    nets.main.solidityNode,
-                    nets.main.eventServer
-                );
-                defaultAddress = nets.main.defaultAddress;
-                isMain = true;
-                break;
-            case NET.TEST:
-                tronweb = new TronWeb(
-                    nets.test.fullNode,
-                    nets.test.solidityNode,
-                    nets.test.eventServer
-                );
-                defaultAddress = nets.test.defaultAddress;
-                break;
-            default:
-                throw new Error("Invalid net");
-        }
-    }
-
+function configureNet(tronweb) {
     this.tronweb = tronweb;
-    this.defaultAddress = defaultAddress;
-
-    return {
-        tronweb: tronweb,
-        defaultAddress: defaultAddress,
-        isMain: isMain
-    }
+    this.defaultAddress = tronweb.defaultAddress;
 }
 
 function convertSun(amount) {
@@ -117,7 +68,6 @@ function hexStringToBytes(str) {
 }
 
 module.exports = {
-    configureNet,
     convertSun,
     getChainParameterByName,
     getResourceByName,

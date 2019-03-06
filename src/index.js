@@ -2,11 +2,15 @@ const utils = require("./utils.js");
 const _ = require("lodash");
 
 class TronStation {
-    constructor(net) {
-        const network = utils.configureNet(net);
-        this.tronweb = network.tronweb;
-        this.defaultAddress = network.defaultAddress;
-        this.isMain = network.isMain;
+    constructor(tronweb, isMain) {
+        if(!tronweb)
+            throw new Error('Expected instance of TronWeb');
+        if (isMain === undefined || !(typeof isMain === "boolean"))
+            throw new Error('Invalid value for isMain');
+
+        this.tronweb = tronweb;
+        this.defaultAddress = tronweb.defaultAddress;
+        this.isMain = isMain;
         this.defaultTotalEnergyLimit = 50000000000;
     }
 

@@ -1,6 +1,6 @@
 {
   "name": "tron-station-sdk",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "Tron Station SDK is a library for estimating Tron energy and bandwidth consumption based on Tron network. Developers can quickly review energy and bandwidth points information before deploying/triggerring a smart contract or make a trasaction.",
   "main": "src/index.js",
   "scripts": {
@@ -12,8 +12,7 @@
     "dist"
   ],
   "dependencies": {
-    "lodash": "^4.17.11",
-    "tronweb": "^2.1.29"
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
